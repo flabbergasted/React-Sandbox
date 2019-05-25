@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { FixedSizeList as List } from 'react-window';
 
+const Column = ({ index, style }) => (
+  <div style={style}>Column {index}</div>
+);
 class ClickListConnected extends Component {
+
   render() {
+    const clickList = ({data, style, index}) => {
+      return (
+        // <li key={value}>
+        //   Click {value}
+        // </li>
+        <div style={style}>
+           Click {data[index]}
+        </div>
+      );
+    }
     const clicks = this.props.clicks.map((value, index) => {
         return (
           <li key={value}>
@@ -11,7 +26,16 @@ class ClickListConnected extends Component {
         );
       });
     return (
-      <ul>{clicks}</ul>
+      <List
+        height={75}
+        itemData={this.props.clicks}
+        itemCount={this.props.clicks.length}
+        itemSize={35}
+        width={300}
+      >
+      {clickList}
+      </List>
+      // <ul>{clicks}</ul>
     );
   }
 }

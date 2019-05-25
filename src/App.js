@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Fancy from './Buttons/Fancy'
 import ClickList from './ClickList';
+import EntryDisplay from './Input/EntryDisplay';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           >
             Learn React
           </a>
+          <EntryDisplay></EntryDisplay>
           <Fancy></Fancy>
           <ClickList></ClickList>
         </header>
