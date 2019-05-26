@@ -2,40 +2,50 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FixedSizeList as List } from 'react-window';
 
-const Column = ({ index, style }) => (
-  <div style={style}>Column {index}</div>
-);
 class ClickListConnected extends Component {
+  constructor(props){
+    super(props);
+    this.filteredClicks = this.filteredClicks.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
+    this.state = {
+      filter : ''
+    }
+  }
+  filteredClicks(allClicks, filter) {
+    let r = [];
+    for(let i = 0; i < allClicks.length; i++){
+      if(i !== filter){
+        r.push(allClicks[i]);
+      }
+    }
+    return r;
+  }
+  handleChange(e){
+    this.setState({filter: Number(e.target.value)});
+  }
   render() {
     const clickList = ({data, style, index}) => {
       return (
-        // <li key={value}>
-        //   Click {value}
-        // </li>
         <div style={style}>
            Click {data[index]}
         </div>
       );
     }
-    const clicks = this.props.clicks.map((value, index) => {
-        return (
-          <li key={value}>
-            Click {value}
-          </li>
-        );
-      });
+    let c = this.filteredClicks(this.props.clicks, this.state.filter);
     return (
+      <>
+      <input type='text' onBlur={this.handleChange}></input>
       <List
         height={75}
-        itemData={this.props.clicks}
-        itemCount={this.props.clicks.length}
+        itemData={c}
+        itemCount={c.length}
         itemSize={35}
         width={300}
       >
       {clickList}
       </List>
-      // <ul>{clicks}</ul>
+      </>
     );
   }
 }
