@@ -1,4 +1,4 @@
-import { ADD_CLICK } from "../constants/action_types";
+import { ADD_CLICK, REMOVE_CLICK } from "../constants/action_types";
 
 const initialState = {
     clicks: []
@@ -14,11 +14,17 @@ const initialState = {
  * @returns The state of the application after the action has been applied.
  */
   function rootReducer(state = initialState, action) {
-      if(action.type === ADD_CLICK){
+      switch(action.type){
+        case ADD_CLICK:
           return Object.assign({}, state, {
             clicks: state.clicks.concat(state.clicks.length + 1)
           });
+        case REMOVE_CLICK:          
+          return Object.assign({}, state, {
+            clicks: state.clicks.slice(0, state.clicks.length-1)
+          });
+        default:
+          return state;
       }
-    return state;
   };
   export default rootReducer;

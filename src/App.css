@@ -31,3 +31,70 @@
     transform: rotate(360deg);
   }
 }
+
+.ClickContainer {
+  background-color: black;    
+  max-height: 500px;
+  transition: max-height 0.25s ease-in;
+}
+
+.ClickContainer:hover {
+  background-color: black;    
+  max-height: 50px;
+  transition: max-height 0.25s ease-in;
+}
+
+.item-enter {
+  opacity: 0;
+  height: 0;
+}
+.item-enter-active {
+  opacity: 1;
+  height: 38px;
+  transition: opacity 500ms ease-in, height 250ms;
+}
+.item-exit {
+  opacity: 1;
+  width: 85px;
+  height: 38px;
+}
+.item-exit-active {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: opacity 500ms ease-in, width 250ms, height 250ms;
+}
+
+.grow-enter{
+  max-width:0
+}
+.grow-enter-active{
+  max-width:1800px;
+  transition: max-width 250ms ease-in;
+}
+
+
+.container {
+  min-width: 600px;
+  max-width: 98%;
+  height: 500px;
+  overflow: auto;
+  background-color: cadetblue;
+}
+.row{
+  display: flex;
+  flex-grow:1;
+  flex-direction: row;
+  width: 100%;
+}
+.row > div {
+  min-width: 200px;
+  padding-left: 5px;
+  border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
